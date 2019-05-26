@@ -9,6 +9,8 @@
         :on-change="handleIconChange"
         :on-remove="handleIconChange"
         :limit="1"
+        :drag="true"
+        :auto-upload="false"
       >
         <i class="el-icon-plus"></i>
       </el-upload>
@@ -21,6 +23,8 @@
         :on-change="handleTargetChange"
         :on-remove="handleTargetChange"
         :multiple="true"
+        :drag="true"
+        :auto-upload="false"
       >
         <i class="el-icon-plus"></i>
       </el-upload>
