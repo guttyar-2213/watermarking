@@ -47,6 +47,18 @@
         <h3>余白</h3>
         <table>
           <tbody>
+            <tr>
+              <th>一括</th>
+              <td>
+                <el-input-number
+                  v-model="watermark.marginAll"
+                  :min="0"
+                  controls-position="right"
+                  @change="marginAllChange"
+                ></el-input-number>
+              </td>
+              <td>px</td>
+            </tr>
             <tr v-for="item in watermark.options.margin" :key="item.value">
               <th>{{ item.label }}</th>
               <td>
@@ -140,6 +152,7 @@ export default {
     canvas: null,
     watermark: {
       pos: 3, // 0: top-left, 1: top-right, 2: bottom-left, 3: bottom-right
+      marginAll: 25,
       margin: [25, 25, 25, 25], // 0: top, 1: bottom, 2: left, 3: right
       size: {
         val: [20, 20], // %, 0: width, 1: height
@@ -181,6 +194,9 @@ export default {
     handleIconChange(file, fileList) {
       this.iconSelected = fileList.length > 0
       this.icon = file.url
+    },
+    marginAllChange(val) {
+      this.watermark.margin.fill(val)
     },
     downloadURI(uri, name) {
       const link = document.createElement('a')
