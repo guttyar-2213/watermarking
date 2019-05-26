@@ -22,6 +22,7 @@
     "element-ui": "^2.8.2",
     "konva": "^3.2.6",
     "nuxt": "^2.4.0",
+    "nuxt-device-detect": "^1.1.5",
     "sanitize.css": "^9.0.0"
   },
   "devDependencies": {

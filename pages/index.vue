@@ -115,6 +115,15 @@
     <section>
       <h2>結果</h2>
       <el-button type="primary" round @click="draw">Generate</el-button>
+      <article v-if="$device.isMobileOrTablet" class="res">
+        <el-row class="res-row">
+          <el-col v-for="(item, index) in images" :key="index" class="card">
+            <el-card :body-style="{ padding: '0px' }">
+              <img :src="item" class="image" />
+            </el-card>
+          </el-col>
+        </el-row>
+      </article>
       <div id="image"></div>
     </section>
   </main>
@@ -124,6 +133,7 @@
 const konva = require('konva')
 export default {
   data: () => ({
+    images: [],
     data: [],
     icon: {},
     iconSelected: false,
@@ -187,6 +197,7 @@ export default {
       const canvas = this.canvas
       let imageLayer, watermarkLayer
       const _this = this
+      this.images = []
       for (const item of _this.data) {
         new Promise(function(resolve, reject) {
           _this.canvas.destroy()
@@ -249,7 +260,11 @@ export default {
               img.opacity(_this.watermark.opacity / 100)
               watermarkLayer.add(img)
               watermarkLayer.draw()
-              _this.downloadURI(canvas.toDataURL(), item.name)
+              if (_this.$device.isDesktop) {
+                _this.downloadURI(canvas.toDataURL(), item.name)
+              } else {
+                _this.images.push(canvas.toDataURL())
+              }
             })
           })
           .then(function() {
@@ -304,5 +319,18 @@ article {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+.image {
+  max-width: 80vw;
+  width: 300px;
+}
+.res {
+  margin: 30px 0;
+}
+.res-row *:not(img) {
+  width: fit-content;
+}
+.card {
+  margin: 25px;
 }
 </style>
