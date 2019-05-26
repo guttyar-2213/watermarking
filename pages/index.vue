@@ -6,7 +6,6 @@
       <el-upload
         action=""
         list-type="picture-card"
-        :drag="true"
         :on-change="handleIconChange"
         :on-remove="handleIconChange"
         :limit="1"
@@ -19,7 +18,6 @@
       <el-upload
         action=""
         list-type="picture-card"
-        :drag="true"
         :on-change="handleTargetChange"
         :on-remove="handleTargetChange"
         :multiple="true"
