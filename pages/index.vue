@@ -127,7 +127,8 @@
     <section>
       <h2>結果</h2>
       <el-button type="primary" round @click="draw">Generate</el-button>
-      <article v-if="$device.isMobileOrTablet" class="res">
+      <!--<article v-if="$device.isMobileOrTablet" class="res">-->
+      <article class="res">
         <el-row class="res-row">
           <el-col v-for="(item, index) in images" :key="index" class="card">
             <el-card :body-style="{ padding: '0px' }">
@@ -276,11 +277,11 @@ export default {
               img.opacity(_this.watermark.opacity / 100)
               watermarkLayer.add(img)
               watermarkLayer.draw()
-              if (_this.$device.isDesktop) {
-                _this.downloadURI(canvas.toDataURL(), item.name)
-              } else {
-                _this.images.push(canvas.toDataURL())
-              }
+              // if (_this.$device.isDesktop) {
+              //   _this.downloadURI(canvas.toDataURL(), item.name)
+              // } else {
+              _this.images.push(canvas.toDataURL())
+              // }
             })
           })
           .then(function() {
